@@ -1,37 +1,28 @@
 "use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    if (email === "test@gmail.com" && password === "123456") {
-      router.push("/");
-    } else {
-      setError("Invalid email or password ❌");
-    }
-  };
-  const handleGoogleLogin = () => {
-
+  const handleLogin = (data) => {
+    console.log(data)
   }
 
+  console.log(watch('email'), "watch")
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
       <div className="card w-full max-w-md bg-base-100 shadow-xl p-6">
         <h2 className="text-3xl font-bold text-center mb-4">Login</h2>
 
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
 
           {/* Email */}
           <div>
@@ -42,11 +33,9 @@ export default function LoginPage() {
             </label>
             <input
               type="email"
+              {...register("email")}
               className="input input-bordered w-full"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
             />
           </div>
 
@@ -59,17 +48,15 @@ export default function LoginPage() {
             </label>
             <input
               type="password"
+              {...register("password", { required: "Password Fild is Reqierd" })}
               className="input input-bordered w-full"
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
             />
+            {errors.password ? <p className="text-red-500">{errors.password.message}</p> : ""}
           </div>
 
-          {error && <p className="text-red-500">{error}</p>}
           <button
-            onClick={handleGoogleLogin}
+            // onClick={handleGoogleLogin}
             className="btn w-full mt-3 flex items-center justify-center gap-2"
           >
             <FcGoogle size={20} />

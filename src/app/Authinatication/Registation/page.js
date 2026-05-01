@@ -1,43 +1,21 @@
 "use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MdEmail, MdLock, MdPerson, MdImage } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
 
 export default function RegisterPage() {
-  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    photo: "",
-    password: "",
-  });
-
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    if (form.password.length < 6) {
-      setError("Password must be at least 6 characters ❌");
-      return;
-    }
-
-    console.log("User Registered:", form);
-    router.push("/login");
-  };
-  const handleGoogleLogin = () => {
-
+  const handleRegister = (data) => {
+    console.log(data)
+    const { name, email, photo, password } = data
+    console.log(name, email, photo, password)
   }
 
   return (
@@ -45,7 +23,7 @@ export default function RegisterPage() {
       <div className="card w-full max-w-md bg-base-100 shadow-xl p-6">
         <h2 className="text-3xl font-bold text-center mb-4">Register</h2>
 
-        <form onSubmit={handleRegister} className="space-y-4">
+        <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
 
           {/* Name */}
           <div>
@@ -56,10 +34,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="text"
-              name="name"
+              {...register("name")}
               className="input input-bordered w-full"
               placeholder="Enter your name"
-              onChange={handleChange}
               required
             />
           </div>
@@ -73,10 +50,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
-              name="email"
+              {...register("email")}
               className="input input-bordered w-full"
               placeholder="Enter your email"
-              onChange={handleChange}
               required
             />
           </div>
@@ -90,10 +66,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="text"
-              name="photo"
+              {...register("photo")}
               className="input input-bordered w-full"
               placeholder="Enter image link"
-              onChange={handleChange}
             />
           </div>
 
@@ -106,22 +81,22 @@ export default function RegisterPage() {
             </label>
             <input
               type="password"
-              name="password"
+              {...register("password")}
               className="input input-bordered w-full"
               placeholder="Enter password"
-              onChange={handleChange}
               required
             />
           </div>
 
-          {error && <p className="text-red-500">{error}</p>}
+          {/* {error && <p className="text-red-500">{error}</p>} */}
           <button
-            onClick={handleGoogleLogin}
             className="btn w-full mt-3 flex items-center justify-center gap-2"
           >
             <FcGoogle size={20} />
             Continue with Google
           </button>
+
+
           <button className="btn btn-primary w-full">Register</button>
         </form>
 
