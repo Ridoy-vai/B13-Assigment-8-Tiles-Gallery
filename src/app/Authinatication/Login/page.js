@@ -72,6 +72,8 @@ export default function LoginPage() {
             {errors.password ? <p className="text-red-500">{errors.password.message}</p> : ""}
           </div>
 
+          <button className="btn btn-primary w-full">Login</button>
+        </form>
           <button
             onClick={handleGoogleLogin}
             className="btn w-full mt-3 flex items-center justify-center gap-2"
@@ -79,8 +81,6 @@ export default function LoginPage() {
             <FcGoogle size={20} />
             Continue with Google
           </button>
-          <button className="btn btn-primary w-full">Login</button>
-        </form>
 
         <p className="text-center mt-4">
           Don’t have an account?{" "}

@@ -2,12 +2,16 @@
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
+import FethLoader from '../FethLoader';
 
 const Navlogin = () => {
+
+  
     const { data: session } = authClient.useSession()
     const user = session?.user
+   
     // console.log(session, "navbar")
-    console.log(user, "navbar user")
+    // console.log(user, "navbar user")
     const handelSignOut = async () => {
         await authClient.signOut();
         alert("sing out succes")
@@ -34,11 +38,11 @@ const Navlogin = () => {
                             </Link>
                         </li>
                         <li><a>Settings</a></li>
-                        <li onClick={handelSignOut}><a>Logout</a></li>
+                        <li onClick={handelSignOut}><a>Log out</a></li>
                     </ul>
-                </div> :
+                </div > :
                 <Link href='/Authinatication/Login'><button className="btn">Log In</button></Link>}
-        </div>
+        </div >
     );
 };
 

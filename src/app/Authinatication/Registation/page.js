@@ -106,12 +106,6 @@ export default function RegisterPage() {
           </div>
 
           {/* {error && <p className="text-red-500">{error}</p>} */}
-          <button
-            className="btn w-full mt-3 flex items-center justify-center gap-2"
-          >
-            <FcGoogle size={20} />
-            Continue with Google
-          </button>
 
 
           <button className="btn btn-primary w-full">Register</button>
