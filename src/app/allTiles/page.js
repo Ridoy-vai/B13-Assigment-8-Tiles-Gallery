@@ -1,31 +1,25 @@
 import FutureProductMap from '@/components/Featured Tiles/FutureProductMap';
-import { getProducts } from '@/components/jsonFatch';
+import { getProductsByCategory } from '@/components/jsonFatch';
 import Link from 'next/link';
 import React from 'react';
-import Catagory from './Catagory';
+import SearchComponent from './SearchComponent';
+import TileMapLoader from '@/components/TileMapLoader';
 
-// কিছু ডামি ক্যাটাগরি (এগুলো আপনার ডাটা অনুযায়ী পরিবর্তন করতে পারেন)
-const categories = [
-    { name: 'All Tiles', slug: 'all', icon: '💎' },
-    { name: 'Marble', slug: 'marble', icon: '🏛️' },
-    { name: 'Ceramic', slug: 'ceramic', icon: '🧱' },
-    { name: 'Porcelain', slug: 'porcelain', icon: '✨' },
-    { name: 'Mosaic', slug: 'mosaic', icon: '🎨' },
-    { name: 'Handmade', slug: 'Handmade', icon: '⛰️' },
-    { name: 'Concrete', slug: 'Concrete', icon: '⛰️' },
-    { name: 'Terrazzo', slug: 'Terrazzo', icon: '⛰️' },
-    { name: 'Stone', slug: 'Stone', icon: '⛰️' },
-    { name: 'Outdoor', slug: 'Outdoor', icon: '⛰️' },
-    { name: 'Decorative', slug: 'Decorative', icon: '⛰️' },
-];
+const AllTilesPage = async ({ searchParams }) => {
+    const query = (await searchParams)?.search || "";
 
-const AllTilesPage = async () => {
-    const products = await getProducts();
+    let isloading = true
 
-    const catagory = products.filter(prod => prod.catagory === products.catagory)
-    console.log(catagory, "catagoru")
+    const products = await getProductsByCategory('all');
 
+    isloading = false;
 
+    const filteredProducts = products.filter((product) => {
+        const searchTerm = query.toLowerCase();
+        return (
+            product.title?.toLowerCase().includes(searchTerm)
+        );
+    });
 
     return (
         <section className="py-16 bg-white container mx-auto">
@@ -36,30 +30,30 @@ const AllTilesPage = async () => {
                     <div>
                         <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Premium Quality</span>
                         <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mt-1">
-                            Explore <span className="text-blue-600">Collections</span>
+                            Explore <span className="text-blue-600">All Tiles</span>
                         </h2>
                     </div>
 
-                    <Link
-                        href="/all-tiles"
-                        className="group flex items-center gap-2 text-gray-900 font-bold hover:text-blue-600 transition-all"
-                    >
-                        View Full Catalog 
-                        <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
-                    </Link>
-                </div>
+                    {/* সার্চ ইনপুট কম্পোনেন্ট */}
+                    <SearchComponent defaultValue={query} />
 
-                {/* 2. Category Section Design */}
-                <div className="mb-12">
-                    <Catagory categories={categories}/>
+
                 </div>
 
                 {/* 3. Product Grid Layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
-                    <FutureProductMap products={products} />
-                </div>
+                {isloading ? <TileMapLoader /> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+                    {filteredProducts.length > 0 ? (
+                        <FutureProductMap products={filteredProducts} />
+                    ) : (
+                        <div className="col-span-full flex justify-center items-center py-20">
+                            <h3 className="text-2xl font-semibold text-gray-500">
+                                No tiles found
+                            </h3>
+                        </div>
+                    )}
+                </div>}
 
-                {/* 4. Bottom Call to Action (Mobile Only) */}
+                {/* 4. Bottom Call to Action */}
                 <div className="mt-12 sm:hidden text-center">
                     <Link href="/all-tiles">
                         <button className="bg-gray-900 text-white w-full py-4 rounded-xl font-bold active:scale-95 transition-transform">

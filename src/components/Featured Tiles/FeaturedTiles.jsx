@@ -1,9 +1,9 @@
-import { getProducts } from "../jsonFatch";
+import { getProducts, getProductsByCategory } from "../jsonFatch";
 import FutureProductMap from "./FutureProductMap";
 import Link from 'next/link';
 
 const FeaturedTiles = async () => {
-    const allProducts = await getProducts();
+    const allProducts = await getProductsByCategory('all');
     
     // শুধু প্রথম ৪টি প্রোডাক্টকে ফিচারড হিসেবে দেখানোর জন্য slice করা হয়েছে
     const featuredProducts = allProducts.slice(0, 4);
@@ -22,7 +22,7 @@ const FeaturedTiles = async () => {
                     </div>
                     
                     <Link 
-                        href="/all-tiles" 
+                        href="/allTiles" 
                         className="text-blue-600 font-semibold hover:underline hidden sm:block"
                     >
                         View All Tiles &rarr;

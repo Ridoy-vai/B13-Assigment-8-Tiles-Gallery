@@ -1,12 +1,15 @@
-// export const getProducts = async () => {
-//   const res = await fetch('/products.json');
-//   return await res.json();
-// };
-
-export const getProducts = async () => {
+export const getProductsByCategory = async (slug) => {
   const res = await fetch('http://localhost:3000/products.json', {
     cache: 'no-store',
   });
 
-  return res.json();
+  const products = await res.json();
+
+  // যদি "all" হয় → সব return করবে
+  if (slug === 'all') return products;
+
+  // না হলে category filter করবে
+  return products.filter(product => 
+    product.category.toLowerCase() === slug.toLowerCase()
+  );
 };
