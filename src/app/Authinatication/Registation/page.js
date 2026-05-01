@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MdEmail, MdLock, MdPerson, MdImage } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 export default function RegisterPage() {
   const {
@@ -12,10 +13,26 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm()
 
-  const handleRegister = (data) => {
-    console.log(data)
+  const handleRegister = async (data) => {
+    // console.log(data)
     const { name, email, photo, password } = data
-    console.log(name, email, photo, password)
+    // console.log(name, email, photo, password)
+
+
+    const {data: res, error } = await authClient.signUp.email({
+      name: name, // required
+      email: email, // required
+      password: password, // required
+      image: photo,
+      callbackURL: "/",
+    });
+    console.log(res, error,"registation")
+    if(error){
+      alert('exist')
+    }
+    if(res){
+      alert('succes')
+    }
   }
 
   return (

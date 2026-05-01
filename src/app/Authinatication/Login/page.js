@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 export default function LoginPage() {
   const {
@@ -12,8 +13,17 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm()
 
-  const handleLogin = (data) => {
-    console.log(data)
+  const handleLogin = async (data) => {
+    // console.log(data)
+    const { name, email, photo, password } = data
+    // console.log(name, email, photo, password)
+    const { data: res, error } = await authClient.signIn.email({
+      email: email, // required
+      password: password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    console.log(res, error, 'login')
   }
 
   console.log(watch('email'), "watch")

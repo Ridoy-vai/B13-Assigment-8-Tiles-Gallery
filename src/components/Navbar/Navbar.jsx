@@ -1,8 +1,7 @@
 import React from 'react';
 import NavClient from './NavClient';
 import Image from 'next/image';
-import Link from 'next/link';
-// import LoginPage from '@/app/Authinatication/Login/page';
+import Navlogin from './Navlogin';
 
 const Navbar = () => {
 
@@ -48,9 +47,10 @@ const Navbar = () => {
                     <NavClient Navitems={Navitems} />
                 </ul>
             </div>
-            <div className="navbar-end">
-                <Link href='/Authinatication/Login'><button  className="btn">Log In</button></Link>
-            </div>
+
+
+
+            <Navlogin />
         </div>
     );
 };
