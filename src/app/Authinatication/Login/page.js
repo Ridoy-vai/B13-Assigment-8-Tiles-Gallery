@@ -25,6 +25,13 @@ export default function LoginPage() {
     });
     console.log(res, error, 'login')
   }
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+
+    console.log(data)
+  }
 
   console.log(watch('email'), "watch")
   return (
@@ -66,7 +73,7 @@ export default function LoginPage() {
           </div>
 
           <button
-            // onClick={handleGoogleLogin}
+            onClick={handleGoogleLogin}
             className="btn w-full mt-3 flex items-center justify-center gap-2"
           >
             <FcGoogle size={20} />

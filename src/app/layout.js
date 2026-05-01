@@ -1,3 +1,6 @@
+import dns from "node:dns"
+dns.setServers(["8.8.8.8", "8.8.4.4"])
+
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
@@ -15,10 +18,10 @@ export default function RootLayout({ children }) {
       className={`h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar/>
+        <Navbar />
         {children}
-        <Footer/>
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }
