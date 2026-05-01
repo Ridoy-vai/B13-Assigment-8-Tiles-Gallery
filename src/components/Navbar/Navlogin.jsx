@@ -6,8 +6,12 @@ import React from 'react';
 const Navlogin = () => {
     const { data: session } = authClient.useSession()
     const user = session?.user
-    console.log(session, "navbar")
+    // console.log(session, "navbar")
     console.log(user, "navbar user")
+    const handelSignOut = async () => {
+        await authClient.signOut();
+        alert("sing out succes")
+    }
     return (
         <div className="navbar-end">
 
@@ -30,7 +34,7 @@ const Navlogin = () => {
                             </Link>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li onClick={handelSignOut}><a>Logout</a></li>
                     </ul>
                 </div> :
                 <Link href='/Authinatication/Login'><button className="btn">Log In</button></Link>}

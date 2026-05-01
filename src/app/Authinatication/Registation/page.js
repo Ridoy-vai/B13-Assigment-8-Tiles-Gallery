@@ -26,9 +26,9 @@ export default function RegisterPage() {
       image: photo,
       callbackURL: "/",
     });
-    console.log(res, error,"registation")
+    console.log(res,"responce", error,"registation")
     if(error){
-      alert('exist')
+      alert('error')
     }
     if(res){
       alert('succes')
