@@ -2,11 +2,12 @@
 import Link from "next/link";
 import { MdEmail, MdLock, MdPerson, MdImage } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { authClient } from "../../../lib/auth-client";
 
 export default function RegisterPage() {
   const router = useRouter();

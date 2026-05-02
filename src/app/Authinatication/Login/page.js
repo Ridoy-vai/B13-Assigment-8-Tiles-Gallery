@@ -4,7 +4,8 @@ import { MdEmail, MdLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
-import { authClient } from "@/lib/auth-client";
+// import { authClient } from "@/lib/auth-client";
+import { authClient } from "../../../lib/auth-client";
 import { toast } from "react-toastify";
 import { useState } from "react";
 

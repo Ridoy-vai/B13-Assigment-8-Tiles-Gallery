@@ -1,5 +1,6 @@
 "use client"
-import { authClient } from '@/lib/auth-client';
+// import { authClient } from '@/lib/auth-client';
+import { authClient } from "../../lib/auth-client";
 import Link from 'next/link';
 import React from 'react';
 // import FethLoader from '../FethLoader';
