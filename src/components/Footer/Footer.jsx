@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
@@ -8,9 +9,18 @@ export default function Footer() {
 
         {/* Brand */}
         <div>
-          <h2 className="text-2xl font-bold text-white">MyApp</h2>
+          <div>
+            <Image
+                                src="https://akijceramics.net/wp-content/uploads/2023/07/akij-ceramics-logo.png"
+                                alt="example"
+                                width={300}
+                                height={200}
+                                className="hi"
+                            />
+          </div>
+          {/* <h2 className="text-2xl font-bold text-white">AKIJ SERAMIX</h2> */}
           <p className="mt-2 text-sm">
-            Building modern web experiences with clean UI.
+            reating modern spaces with clean design & premium ceramics.
           </p>
         </div>
 
@@ -19,7 +29,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-white">Home</Link></li>
-            <li><a href="/products" className="hover:text-white">Products</a></li>
+            <li><Link href="/allTiles" className="hover:text-white">Products</Link></li>
             <li><a href="/about" className="hover:text-white">About</a></li>
             <li><a href="/contact" className="hover:text-white">Contact</a></li>
           </ul>
@@ -28,8 +38,8 @@ export default function Footer() {
         {/* Contact + Social */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Contact Us</h3>
-          <p className="text-sm">Email: support@myapp.com</p>
-          <p className="text-sm">Phone: +880 1234-567890</p>
+          <p className="text-sm">Email: mdsahariyarridoy@gmail.com</p>
+          <p className="text-sm">Phone: +880 1310-585062</p>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4 text-lg">
@@ -44,7 +54,7 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-gray-700 text-center py-4 text-sm">
-        © {new Date().getFullYear()} MyApp. All rights reserved.
+        © {new Date().getFullYear()} Akij Seramix. All rights reserved.
       </div>
     </footer>
   );
