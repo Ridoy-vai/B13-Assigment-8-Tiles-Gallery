@@ -1,5 +1,5 @@
 export const getProductsByCategory = async (slug) => {
-  const res = await fetch('http://localhost:3000/products.json', {
+  const res = await fetch('/products.json', {
     cache: 'no-store',
   });
 
