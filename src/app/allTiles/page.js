@@ -1,5 +1,5 @@
 import FutureProductMap from '@/components/Featured Tiles/FutureProductMap';
-import { getProductsByCategory } from '@/components/jsonFatch';
+import { getProducts } from '@/components/jsonFatch';
 import Link from 'next/link';
 import React from 'react';
 import SearchComponent from './SearchComponent';
@@ -10,11 +10,11 @@ const AllTilesPage = async ({ searchParams }) => {
 
     let isloading = true
 
-    const products = await getProductsByCategory('all');
+     const allProducts = await getProducts();
 
     isloading = false;
 
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = allProducts.filter((product) => {
         const searchTerm = query.toLowerCase();
         return (
             product.title?.toLowerCase().includes(searchTerm)

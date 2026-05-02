@@ -2,7 +2,7 @@
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
-import FethLoader from '../FethLoader';
+// import FethLoader from '../FethLoader';
 import { toast } from 'react-toastify';
 import { IoIosLogIn } from 'react-icons/io';
 import { callbackOAuth } from 'better-auth/api';

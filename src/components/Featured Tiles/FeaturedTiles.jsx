@@ -1,11 +1,11 @@
 import FethLoader from "../FethLoader";
-import { getProducts, getProductsByCategory } from "../jsonFatch";
+import { getProducts } from "../jsonFatch";
 import FutureProductMap from "./FutureProductMap";
 import Link from 'next/link';
 
 const FeaturedTiles = async () => {
     var loading = true
-    const allProducts = await getProductsByCategory('all');
+    const allProducts = await getProducts();
     const featuredProducts = allProducts.slice(0, 4);
 
     var loading = false

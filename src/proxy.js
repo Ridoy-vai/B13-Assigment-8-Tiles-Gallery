@@ -1,5 +1,6 @@
 import dns from "node:dns"
 dns.setServers(["8.8.8.8", "8.8.4.4"])
+
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';

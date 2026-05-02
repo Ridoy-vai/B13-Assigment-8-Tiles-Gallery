@@ -1,4 +1,4 @@
-import { getProductsByCategory } from '@/components/jsonFatch';
+import { getProducts, getProductsByCategory } from '@/components/jsonFatch';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,9 +6,9 @@ import React from 'react';
 const TileDetails = async ({ params }) => {
     const { id } = await params;
     console.log(id, " params")
-    const products = await getProductsByCategory('all');
+     const allProducts = await getProducts();
 
-    const tile = products.find(p => p.id === id)
+    const tile = allProducts.find(p => p.id === id)
     console.log(tile, 'params')
     return (
         <div className="bg-gray-50 min-h-screen py-12">
