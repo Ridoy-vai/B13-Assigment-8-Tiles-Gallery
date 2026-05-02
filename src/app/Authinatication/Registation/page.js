@@ -130,7 +130,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={togglePassword}
-              className="absolute right-3 top-10.5 text-lg"
+              className="absolute right-3 top-[42px] text-lg"
             >
               {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
             </button>
