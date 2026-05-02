@@ -18,7 +18,6 @@ export default function Footer() {
                                 className="hi"
                             />
           </div>
-          {/* <h2 className="text-2xl font-bold text-white">AKIJ SERAMIX</h2> */}
           <p className="mt-2 text-sm">
             reating modern spaces with clean design & premium ceramics.
           </p>
