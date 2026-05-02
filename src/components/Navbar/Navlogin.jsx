@@ -3,18 +3,30 @@ import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
 import FethLoader from '../FethLoader';
+import { toast } from 'react-toastify';
+import { IoIosLogIn } from 'react-icons/io';
+import { callbackOAuth } from 'better-auth/api';
 
 const Navlogin = () => {
 
-  
+
     const { data: session } = authClient.useSession()
     const user = session?.user
-   
+
     // console.log(session, "navbar")
     // console.log(user, "navbar user")
     const handelSignOut = async () => {
-        await authClient.signOut();
-        alert("sing out succes")
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    toast.success("Log out Success ✅");
+                    window.location.href = "/";
+                },
+                onError: () => {
+                    toast.error("Log out Failed ❌");
+                }
+            }
+        });
     }
     return (
         <div className="navbar-end">
@@ -24,7 +36,7 @@ const Navlogin = () => {
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img
-                                alt="Tailwind CSS Navbar component"
+                                alt="Image Link Not Valid"
                                 src={user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
                         </div>
                     </div>
@@ -41,7 +53,7 @@ const Navlogin = () => {
                         <li onClick={handelSignOut}><a>Log out</a></li>
                     </ul>
                 </div > :
-                <Link href='/Authinatication/Login'><button className="btn">Log In</button></Link>}
+                <Link href='/Authinatication/Login'><button className="btn flex items-center">Log In<IoIosLogIn /></button></Link>}
         </div >
     );
 };

@@ -1,29 +1,39 @@
 "use client";
 import { authClient } from '@/lib/auth-client';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const MyProfilePage = () => {
     const { data: session } = authClient.useSession()
     const user = session?.user
-    // উদাহরণ ডাটা (বাস্তব ক্ষেত্রে এটি API বা Auth থেকে আসবে)
-    
 
-    const [showPassword, setShowPassword] = useState(false);
+
+    const handelSignOut = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    toast.success("Log out Success ✅");
+                    window.location.href = "/";
+                },
+                onError: () => {
+                    toast.error("Log out Failed ❌");
+                }
+            }
+        });
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4">
             <div className="max-w-4xl mx-auto">
 
-                {/* ১. প্রোফাইল কার্ড */}
                 <div className="bg-white overflow-hidden border border-gray-100">
 
                     <div className="px-8 pb-10">
-                        {/* ২. প্রোফাইল ইমেজ সেকশন */}
                         <div className="pt-6 mb-6 flex flex-col items-center sm:items-start sm:flex-row sm:gap-6">
                             <div className="w-32 h-32  overflow-hidden bg-gray-200 shadow-lg">
                                 <img
-                                    src={user?.image}
-                                    alt="Profile"
+                                    src={user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                                    alt="Image Link Not Valid"
                                     className="w-full h-full object-cover"
                                 />
                             </div>
@@ -33,19 +43,15 @@ const MyProfilePage = () => {
                             </div>
                         </div>
 
-                        {/* ৩. ইনফরমেশন লিস্ট */}
                         <div className="space-y-6 mt-10">
 
-                            {/* নাম */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl bg-gray-50 border border-gray-100">
                                 <div className="mb-2 sm:mb-0">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name</p>
                                     <p className="text-lg font-semibold text-gray-800">{user?.name}</p>
                                 </div>
-                                <button className="text-sm text-blue-600 font-bold hover:underline">Edit</button>
                             </div>
 
-                            {/* ইমেল */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl bg-gray-50 border border-gray-100">
                                 <div className="mb-2 sm:mb-0">
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email Address</p>
@@ -55,22 +61,17 @@ const MyProfilePage = () => {
                             </div>
 
 
-                            {/* ৪. অ্যাকশন বাটন */}
                             <div className="mt-12 flex flex-col sm:flex-row gap-4">
                                 <button className="flex-1 bg-gray-900 text-white py-4 rounded-2xl font-bold hover:bg-black transition-all active:scale-95">
                                     Update Profile
                                 </button>
-                                <button className="flex-1 bg-red-50 text-red-600 py-4 rounded-2xl font-bold hover:bg-red-100 transition-all active:scale-95">
+                                <button onClick={handelSignOut} className="flex-1 bg-red-50 text-red-600 py-4 rounded-2xl font-bold hover:bg-red-100 transition-all active:scale-95">
                                     Logout Account
                                 </button>
                             </div>
 
                         </div>
                     </div>
-
-                    <p className="text-center mt-8 text-gray-400 text-sm">
-                        Personal data is encrypted and handled according to our Privacy Policy.
-                    </p>
                 </div>
             </div>
         </div>

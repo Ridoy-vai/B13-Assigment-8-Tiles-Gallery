@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 const Loading = () => {
     const [text, setText] = useState("Loading Collection");
     
-    // লোডিং টেক্সট পরিবর্তন করার জন্য একটি ইফেক্ট
     useEffect(() => {
         const phrases = ["Selecting Finest Marble", "Polishing Surfaces", "Arranging Designs", "Almost Ready"];
         let i = 0;
@@ -17,9 +16,7 @@ const Loading = () => {
 
     return (
         <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
-            {/* ১. ইউনিক টাইলস অ্যানিমেশন */}
             <div className="relative w-24 h-24 mb-8">
-                {/* ৯টি ছোট বর্গক্ষেত্র (Tiles) যা আলাদা আলাদা সময়ে এনিমেট হবে */}
                 <div className="grid grid-cols-3 gap-1">
                     {[...Array(9)].map((_, i) => (
                         <div 
@@ -33,11 +30,9 @@ const Loading = () => {
                     ))}
                 </div>
                 
-                {/* একটি বড় বর্ডার যা ঘুরবে */}
                 <div className="absolute -inset-4 border-2 border-dashed border-blue-200 rounded-full animate-[spin_10s_linear_infinite]"></div>
             </div>
 
-            {/* ২. ডাইনামিক টেক্সট */}
             <div className="text-center">
                 <h2 className="text-2xl font-light tracking-[0.3em] uppercase text-gray-900 mb-2">
                     {text}
@@ -49,7 +44,6 @@ const Loading = () => {
                 </div>
             </div>
 
-            {/* ৩. ব্যাকগ্রাউন্ডে হালকা ওয়াটারমার্ক বা প্যাটার্ন */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none overflow-hidden flex flex-wrap gap-10 p-10">
                 {[...Array(50)].map((_, i) => (
                     <span key={i} className="text-6xl font-bold">TILES</span>

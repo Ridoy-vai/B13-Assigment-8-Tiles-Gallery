@@ -9,13 +9,11 @@ const FutureProductMap = ({ products }) => {
         <>
             {products.map((p) => (
                 <div key={p.id} className="card bg-base-100 w-full shadow-sm border border-gray-100">
-
-                    {/* Figure এ একটি নির্দিষ্ট হাইট দিন এবং relative ক্লাসটি অবশ্যই যোগ করুন */}
                     <figure className="relative h-64 w-full overflow-hidden">
                         <Image
                             src={p.image}
                             alt={p.title}
-                            fill // ইমেজকে পুরো কন্টেইনার জুড়ে রাখার জন্য
+                            fill
                             className="object-cover transition-transform duration-300 hover:scale-110" // ইমেজ যাতে স্ট্রেচ না হয়
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />

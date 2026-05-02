@@ -14,7 +14,7 @@ const TileDetails = async ({ params }) => {
         <div className="bg-gray-50 min-h-screen py-12">
             <div className="container mx-auto px-4">
 
-                {/* ১. ব্যাক বাটন এবং ক্যাটাগরি ব্রেডক্রাম্ব */}
+              
                 <nav className="mb-8 flex items-center gap-2 text-sm text-gray-500">
                     <Link href="/all-tiles" className="hover:text-blue-600 transition">All Tiles</Link>
                     <span>/</span>
@@ -23,7 +23,7 @@ const TileDetails = async ({ params }) => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
 
-                    {/* ২. ইমেজ সেকশন */}
+                
                     <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
                         <Image
                             src={tile.image}
@@ -39,7 +39,7 @@ const TileDetails = async ({ params }) => {
                         )}
                     </div>
 
-                    {/* ৩. ইনফরমেশন সেকশন */}
+   
                     <div className="flex flex-col justify-center">
                         <span className="text-blue-600 font-semibold uppercase tracking-widest text-sm mb-2">
                             {tile.category}
@@ -59,7 +59,7 @@ const TileDetails = async ({ params }) => {
                             {tile.description}
                         </p>
 
-                        {/* স্পেসিফিকেশন টেবিল */}
+
                         <div className="grid grid-cols-2 gap-4 border-t border-b border-gray-100 py-6 mb-8">
                             <div>
                                 <p className="text-gray-400 text-sm uppercase font-semibold">Material</p>
@@ -71,7 +71,7 @@ const TileDetails = async ({ params }) => {
                             </div>
                         </div>
 
-                        {/* কল টু অ্যাকশন বাটন */}
+   
                         <div className="flex flex-col sm:flex-row gap-4">
                             <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all active:scale-95 shadow-lg shadow-blue-200">
                                 Add to Quote
@@ -81,14 +81,12 @@ const TileDetails = async ({ params }) => {
                             </button>
                         </div>
 
-                        {/* অতিরিক্ত তথ্য */}
                         <p className="mt-6 text-sm text-gray-400 text-center sm:text-left">
                             * Custom sizes available upon request. Delivery within 7-10 business days.
                         </p>
                     </div>
                 </div>
 
-                {/* ৪. নিচের সেকশন (সম্পর্কিত তথ্য) */}
                 <div className="mt-16 bg-white p-8 rounded-3xl border border-gray-100">
                     <h3 className="text-2xl font-bold mb-6">Technical Specifications</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

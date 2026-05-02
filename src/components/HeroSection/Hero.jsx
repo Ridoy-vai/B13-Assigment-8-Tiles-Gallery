@@ -4,12 +4,7 @@ import Marquee from 'react-fast-marquee';
 import { SiZenbrowser } from 'react-icons/si';
 
 const Hero = () => {
-    const images = [
-        "https://images.unsplash.com/photo-1",
-        "https://images.unsplash.com/photo-2",
-        "https://images.unsplash.com/photo-3",
-        "https://images.unsplash.com/photo-4",
-    ];
+
     return (
         <div className="hero min-h-[91vh] max-h-screen relative container mx-auto z-2" style={{ backgroundImage: "url(https://theonlinetileshop.co.uk/img/cms/tots-sample-banner.png)", }} >
 

@@ -6,8 +6,6 @@ import Link from 'next/link';
 const FeaturedTiles = async () => {
     var loading = true
     const allProducts = await getProductsByCategory('all');
-
-    // শুধু প্রথম ৪টি প্রোডাক্টকে ফিচারড হিসেবে দেখানোর জন্য slice করা হয়েছে
     const featuredProducts = allProducts.slice(0, 4);
 
     var loading = false
@@ -33,12 +31,11 @@ const FeaturedTiles = async () => {
                     </Link>
                 </div>
 
-                {/* Grid Layout - Responsive করা হয়েছে */}
+                {/* Grid Layout - Responsive */}
                 {loading ? <FethLoader /> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                     <FutureProductMap products={featuredProducts} />
-                </div>}
-
-                {/* Mobile View All Button */}
+                </div>
+                }
                 <div className="mt-8 sm:hidden text-center">
                     <Link href="/all-tiles">
                         <button className="btn btn-outline btn-primary w-full">View All Tiles</button>

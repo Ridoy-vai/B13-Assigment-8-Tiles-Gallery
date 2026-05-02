@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tiles Gallery
 
-## Getting Started
+## প্রজেক্টের নাম
+Tiles Gallery
 
-First, run the development server:
+## প্রজেক্টের উদ্দেশ্য
+এই ওয়েবসাইটে বিভিন্ন ধরনের টাইলস দেখা যায়। ব্যবহারকারী টাইলস খুঁজতে পারেন, বিস্তারিত দেখতে পারেন এবং নিজের প্রোফাইল ম্যানেজ করতে পারেন।
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## লাইভ লিংক
+https://your-live-url.vercel.app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## কী কী করা যায়
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- হোম পেজে টাইলসের একটা সুন্দর কালেকশন দেখা যায়
+- সব টাইলস একসাথে দেখা যায় এবং নাম দিয়ে সার্চ করা যায়
+- যেকোনো একটা টাইলসে ক্লিক করলে সেটার বিস্তারিত তথ্য দেখা যায়
+- ইমেইল ও পাসওয়ার্ড দিয়ে অ্যাকাউন্ট খোলা যায় এবং লগইন করা যায়
+- গুগল দিয়েও সরাসরি লগইন করা যায়
+- নিজের প্রোফাইল দেখা যায় এবং নাম ও ছবির লিংক আপডেট করা যায়
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ব্যবহার করা প্যাকেজসমূহ
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- next
+- better-auth
+- mongoose
+- react-hook-form
+- react-toastify
+- react-icons
+- swiper
+- daisyui
+- tailwindcss

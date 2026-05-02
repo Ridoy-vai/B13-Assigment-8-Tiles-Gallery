@@ -8,12 +8,11 @@ const TileMapLoader = ({ minHeight = "400px", text = "Loading Collection" }) => 
             style={{ minHeight: minHeight }}
         >
             <div className="relative">
-                {/* ইউনিক ৩x৩ মোজাইক অ্যানিমেশন */}
                 <div className="grid grid-cols-3 gap-1.5 p-4 bg-white shadow-xl rounded-xl rotate-12">
                     {[...Array(9)].map((_, i) => (
                         <div 
                             key={i}
-                            className="w-6 h-6 bg-blue-600 rounded-[2px]"
+                            className="w-6 h-6 bg-blue-600 rounded-xs"
                             style={{
                                 animation: `tilePulse 1.5s infinite ease-in-out`,
                                 animationDelay: `${i * 0.1}s`,
@@ -22,11 +21,9 @@ const TileMapLoader = ({ minHeight = "400px", text = "Loading Collection" }) => 
                     ))}
                 </div>
                 
-                {/* চারপাশের অর্নামেন্টাল রিং */}
                 <div className="absolute -inset-6 border border-blue-100 rounded-full animate-ping opacity-20"></div>
             </div>
 
-            {/* টেক্সট এনিমেশন */}
             <div className="mt-10 text-center">
                 <p className="text-sm font-bold tracking-[0.4em] uppercase text-gray-400 animate-pulse">
                     {text}

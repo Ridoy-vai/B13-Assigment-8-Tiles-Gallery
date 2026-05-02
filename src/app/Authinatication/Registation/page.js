@@ -1,44 +1,57 @@
 "use client";
 import Link from "next/link";
 import { MdEmail, MdLock, MdPerson, MdImage } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const handleRegister = async (data) => {
-    // console.log(data)
-    const { name, email, photo, password } = data
-    // console.log(name, email, photo, password)
+    setLoading(true);
 
+    const { name, email, photo, password } = data;
 
-    const {data: res, error } = await authClient.signUp.email({
-      name: name, // required
-      email: email, // required
-      password: password, // required
-      image: photo,
-      callbackURL: "/",
+    const { data: res, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      image: photo || "", 
     });
-    console.log(res,"responce", error,"registation")
-    if(error){
-      alert('error')
+
+    setLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Registration Failed ❌");
+      return;
     }
-    if(res){
-      alert('succes')
+
+    if (res) {
+      toast.success("Account Created Successfully ✅");
+      router.push("/Authinatication/Login");
     }
-  }
+  };
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
       <div className="card w-full max-w-md bg-base-100 shadow-xl p-6">
-        <h2 className="text-3xl font-bold text-center mb-4">Register</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Register</h2>
 
         <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
 
@@ -51,11 +64,13 @@ export default function RegisterPage() {
             </label>
             <input
               type="text"
-              {...register("name")}
+              {...register("name", { required: "Name is required" })}
               className="input input-bordered w-full"
               placeholder="Enter your name"
-              required
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -67,14 +82,16 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
-              {...register("email")}
+              {...register("email", { required: "Email is required" })}
               className="input input-bordered w-full"
               placeholder="Enter your email"
-              required
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
           </div>
 
-          {/* Photo URL */}
+          {/* Photo */}
           <div>
             <label className="label">
               <span className="label-text flex items-center gap-2">
@@ -90,25 +107,49 @@ export default function RegisterPage() {
           </div>
 
           {/* Password */}
-          <div>
+          <div className="relative">
             <label className="label">
               <span className="label-text flex items-center gap-2">
                 <MdLock /> Password
               </span>
             </label>
+
             <input
-              type="password"
-              {...register("password")}
-              className="input input-bordered w-full"
-              placeholder="Enter password"
-              required
+              type={showPassword ? "text" : "password"}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Minimum 6 characters",
+                },
+              })}
+              className="input input-bordered w-full pr-10"
+              placeholder="Enter your password"
             />
+
+            <button
+              type="button"
+              onClick={togglePassword}
+              className="absolute right-3 top-10.5 text-lg"
+            >
+              {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+            </button>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
-          {/* {error && <p className="text-red-500">{error}</p>} */}
 
-
-          <button className="btn btn-primary w-full">Register</button>
+          {/* Submit */}
+          <button
+            type="submit"
+            className="btn btn-primary w-full"
+            disabled={loading}
+          >
+            {loading ? "Creating Account..." : "Registation"}
+          </button>
         </form>
 
         <p className="text-center mt-4">

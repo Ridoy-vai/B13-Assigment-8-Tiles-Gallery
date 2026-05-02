@@ -5,10 +5,10 @@ export const getProductsByCategory = async (slug) => {
 
   const products = await res.json();
 
-  // যদি "all" হয় → সব return করবে
+   "all" 
   if (slug === 'all') return products;
 
-  // না হলে category filter করবে
+  // category filter
   return products.filter(product => 
     product.category.toLowerCase() === slug.toLowerCase()
   );

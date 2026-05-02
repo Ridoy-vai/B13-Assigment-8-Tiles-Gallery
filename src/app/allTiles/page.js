@@ -25,7 +25,7 @@ const AllTilesPage = async ({ searchParams }) => {
         <section className="py-16 bg-white container mx-auto">
             <div className="container mx-auto px-4">
 
-                {/* 1. Header Section */}
+             
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
                     <div>
                         <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Premium Quality</span>
@@ -34,13 +34,13 @@ const AllTilesPage = async ({ searchParams }) => {
                         </h2>
                     </div>
 
-                    {/* সার্চ ইনপুট কম্পোনেন্ট */}
+               
                     <SearchComponent defaultValue={query} />
 
 
                 </div>
 
-                {/* 3. Product Grid Layout */}
+            
                 {isloading ? <TileMapLoader /> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
                     {filteredProducts.length > 0 ? (
                         <FutureProductMap products={filteredProducts} />

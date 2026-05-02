@@ -1,6 +1,4 @@
-// components/SearchComponent.js
 "use client";
-
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
 
@@ -17,7 +15,7 @@ const SearchComponent = ({ defaultValue }) => {
             params.delete('search');
         }
 
-        // URL আপডেট করা (পেজ রিফ্রেশ ছাড়া)
+    
         startTransition(() => {
             router.push(`${pathname}?${params.toString()}`);
         });

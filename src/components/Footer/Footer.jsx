@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 mt-10">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
         {/* Brand */}
         <div>
           <h2 className="text-2xl font-bold text-white">MyApp</h2>
@@ -17,7 +18,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="hover:text-white">Home</a></li>
+            <li><Link href="/" className="hover:text-white">Home</Link></li>
             <li><a href="/products" className="hover:text-white">Products</a></li>
             <li><a href="/about" className="hover:text-white">About</a></li>
             <li><a href="/contact" className="hover:text-white">Contact</a></li>
