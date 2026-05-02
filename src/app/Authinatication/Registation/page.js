@@ -36,6 +36,7 @@ export default function RegisterPage() {
 
     if (error) {
       toast.error(error.message || "Registration Failed ❌");
+      console.log(error)
       return;
     }
 
