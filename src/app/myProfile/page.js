@@ -1,6 +1,6 @@
 "use client";
 import { authClient } from '@/lib/auth-client';
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 const MyProfilePage = () => {
